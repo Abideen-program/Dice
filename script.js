@@ -6,6 +6,8 @@ const score0El = document.getElementById('score--0');
 const score1El = document.getElementById('score--1');
 const currentScore0El = document.getElementById('current--0');
 const currentScore1El = document.getElementById('current--1');
+const current0 = document.querySelector('.current--0');
+const current1 = document.querySelector('.current--1');
 const diceEl = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
@@ -15,15 +17,46 @@ const modalText = document.querySelector('.modal-text');
 const closeModal = document.querySelector('.close-modal');
 const overlay = document.querySelector('.overlay');
 
-//starting game condition
-diceEl.classList.add('hidden');
-score0El.textContent = 0;
-score1El.textContent = 0;
+let currentScore, activePlayer, scores, playing;
 
-let currentScore = 0;
-let activePlayer = 0;
-let scores = [0, 0];
-let playing = true;
+const intializingGame = () => {
+  //starting game condition
+  currentScore = 0;
+  activePlayer = 0;
+  scores = [0, 0];
+  playing = true;
+
+  //hide dice and set score to zero on UI
+  diceEl.classList.add('hidden');
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+
+  // setting total initial score color
+  score0El.classList.add('score-init');
+  score1El.classList.add('score-init');
+
+  //remove total winning score color
+  score0El.classList.remove('score-win');
+  score1El.classList.remove('score-win');
+
+  // setting current score initial color and background
+  current0.classList.add('current-init');
+  current1.classList.add('current-init');
+
+  // removing curring winnig score color and background
+  current0.classList.remove('current-win');
+  current1.classList.remove('current-win');
+
+  //remove player winner from both players
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+
+  //add player active to player 1
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+
+intializingGame();
 
 const switchPlayer = () => {
   // else change current score of active player to 0 and display it
@@ -48,7 +81,6 @@ btnRoll.addEventListener('click', function () {
   if (playing) {
     // generate random dice number
     const dice = Math.trunc(Math.random() * 6) + 1;
-    console.log(dice);
 
     //display dice roll
     diceEl.src = `images/dice-${dice}.png`;
@@ -76,7 +108,7 @@ btnHold.addEventListener('click', function () {
   document.getElementById(`current--${activePlayer}`).textContent =
     currentScore;
   //if score is >= 100 the player wins
-  if (scores[activePlayer] >= 20) {
+  if (scores[activePlayer] >= 10) {
     //change the playing condtion
     playing = false;
 
@@ -89,22 +121,27 @@ btnHold.addEventListener('click', function () {
       .classList.add('player--winner');
 
     // change the player and total score color
-    document.getElementById(`score--${activePlayer}`).style.color = `#fff`;
-    document.getElementById(`name--${activePlayer}`).style.color = `#fff`;
+    document
+      .getElementById(`score--${activePlayer}`)
+      .classList.remove('score-init');
+
+    document
+      .getElementById(`score--${activePlayer}`)
+      .classList.add('score-win');
 
     // change the current section background and color
-    document.querySelector(
-      `.win-current--${activePlayer}`
-    ).style.color = `#60b347`;
-    document.querySelector(
-      `.win-current--${activePlayer}`
-    ).style.backgroundColor = `#fff`;
+    document
+      .querySelector(`.current--${activePlayer}`)
+      .classList.remove('current-init');
+
+    document
+      .querySelector(`.current--${activePlayer}`)
+      .classList.add('current-win');
 
     //display modal & overlay
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
-    modalText.textContent = `Player ${activePlayer + 1} wins`
-
+    modalText.textContent = `Player ${activePlayer + 1} wins`;
   } else {
     // if not switch player
     switchPlayer();
@@ -116,7 +153,4 @@ closeModal.addEventListener('click', function () {
   overlay.classList.add('hidden');
 });
 
-
-btnNew.addEventListener('click', function() {
-    playing = true;
-})
+btnNew.addEventListener('click', intializingGame);

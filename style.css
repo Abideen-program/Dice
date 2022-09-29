@@ -59,9 +59,17 @@ main {
 .score {
   font-size: 8rem;
   font-weight: 300;
-  color: #c7365f;
   margin-bottom: auto;
 }
+
+
+.score-init {
+  color: #c7365f;
+}
+
+.score-win {
+  color: #fff;
+} 
 
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
@@ -78,14 +86,22 @@ main {
 }
 
 .current {
-  background-color: #c7365f;
   opacity: 0.8;
   border-radius: 9px;
-  color: #fff;
   width: 65%;
   padding: 2rem;
   text-align: center;
   transition: all 0.75s;
+}
+
+.current-init {
+  background-color: #c7365f;
+  color: #fff;
+}
+
+.current-win{
+  background-color: #fff;
+  color: #60b347;
 }
 
 .current-label {
@@ -164,7 +180,7 @@ main {
 
 .player--winner .name {
   font-weight: 700;
-  color: #c7365f;
+  color: #fff;
 }
 
 .hidden {
