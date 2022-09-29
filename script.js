@@ -10,6 +10,11 @@ const diceEl = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const btnNew = document.querySelector('.btn--new');
+const modal = document.querySelector('.modal');
+const modalText = document.querySelector('.modal-text');
+const closeModal = document.querySelector('.close-modal');
+const overlay = document.querySelector('.overlay');
+
 //starting game condition
 diceEl.classList.add('hidden');
 score0El.textContent = 0;
@@ -88,10 +93,30 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`name--${activePlayer}`).style.color = `#fff`;
 
     // change the current section background and color
-    document.querySelector(`.win-current--${activePlayer}`).style.color = `#60b347`
-    document.querySelector(`.win-current--${activePlayer}`).style.backgroundColor = `#fff`
+    document.querySelector(
+      `.win-current--${activePlayer}`
+    ).style.color = `#60b347`;
+    document.querySelector(
+      `.win-current--${activePlayer}`
+    ).style.backgroundColor = `#fff`;
+
+    //display modal & overlay
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+    modalText.textContent = `Player ${activePlayer + 1} wins`
+
   } else {
     // if not switch player
     switchPlayer();
   }
 });
+
+closeModal.addEventListener('click', function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+});
+
+
+btnNew.addEventListener('click', function() {
+    playing = true;
+})

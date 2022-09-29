@@ -179,6 +179,7 @@ main {
   padding: 6rem;
   border-radius: 2rem;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  border: 2px solid #fff;
 }
 
 .modal-text {
