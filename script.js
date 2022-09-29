@@ -30,6 +30,8 @@ const intializingGame = () => {
   diceEl.classList.add('hidden');
   score0El.textContent = 0;
   score1El.textContent = 0;
+  currentScore0El.textContent = 0;
+  currentScore1El.textContent = 0;
 
   // setting total initial score color
   score0El.classList.add('score-init');
@@ -59,6 +61,7 @@ const intializingGame = () => {
 intializingGame();
 
 const switchPlayer = () => {
+
   // else change current score of active player to 0 and display it
   currentScore = 0;
   document.getElementById(`current--${activePlayer}`).textContent =
@@ -108,7 +111,7 @@ btnHold.addEventListener('click', function () {
   document.getElementById(`current--${activePlayer}`).textContent =
     currentScore;
   //if score is >= 100 the player wins
-  if (scores[activePlayer] >= 10) {
+  if (scores[activePlayer] >= 100) {
     //change the playing condtion
     playing = false;
 

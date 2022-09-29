@@ -28,8 +28,8 @@ main {
   width: 100rem;
   height: 60rem;
   background-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(200px);
-  filter: blur();
+  /* backdrop-filter: blur(200px); */
+  /* filter: blur(); */
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   overflow: hidden;
@@ -62,14 +62,13 @@ main {
   margin-bottom: auto;
 }
 
-
 .score-init {
   color: #c7365f;
 }
 
 .score-win {
   color: #fff;
-} 
+}
 
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
@@ -99,7 +98,7 @@ main {
   color: #fff;
 }
 
-.current-win{
+.current-win {
   background-color: #fff;
   color: #60b347;
 }
@@ -215,7 +214,7 @@ main {
   cursor: pointer;
 }
 
-.overlay{
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -223,4 +222,64 @@ main {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 5;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 70rem;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
+
+  .score {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  main {
+    display: block;
+    width: 30rem;
+    height: 90%;
+    overflow: auto;
+  }
+
+  .player {
+    text-align: center;
+  }
+
+  .current {
+    width: 100%;
+  }
+
+  .dice {
+    left: 0;
+    transform: translateX(50%);
+    height: 5rem;
+  }
+
+  .btn {
+    font-size: 1.5rem;
+    padding: 0.7rem 1.1rem;
+  }
+
+  .btn--new {
+    top: 2rem;
+  }
+
+  .btn--roll {
+    top: 40rem;
+  }
+
+  .modal {
+    width: 50%;
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .modal-text {
+    font-size: 2rem;
+  }
 }
